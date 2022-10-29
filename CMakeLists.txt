@@ -232,15 +232,15 @@ endif()
 # Install sample template_project
 #------------------------------------------------------------
 
-if(MSVC OR XCODE_VERSION)
-    file(COPY ${CMAKE_SOURCE_DIR}/data/ DESTINATION ${CMAKE_BINARY_DIR}/bin/data/)
-else()
-    file(COPY ${CMAKE_SOURCE_DIR}/data/ DESTINATION ${CMAKE_BINARY_DIR}/data/)
-endif()
+# if(MSVC OR XCODE_VERSION)
+#     file(COPY ${CMAKE_SOURCE_DIR}/data/ DESTINATION ${CMAKE_BINARY_DIR}/bin/data/)
+# else()
+#     file(COPY ${CMAKE_SOURCE_DIR}/data/ DESTINATION ${CMAKE_BINARY_DIR}/data/)
+# endif()
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/data/ DESTINATION ${CH_INSTALL_DATA})
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/template_project/ DESTINATION ${CH_INSTALL_SAMPLE_PROJ})
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/template_project_vehicle_cosim/ DESTINATION ${CH_INSTALL_SAMPLE_PROJ_COSIM})
+# install(DIRECTORY ${CMAKE_SOURCE_DIR}/data/ DESTINATION ${CH_INSTALL_DATA})
+# install(DIRECTORY ${CMAKE_SOURCE_DIR}/template_project/ DESTINATION ${CH_INSTALL_SAMPLE_PROJ})
+# install(DIRECTORY ${CMAKE_SOURCE_DIR}/template_project_vehicle_cosim/ DESTINATION ${CH_INSTALL_SAMPLE_PROJ_COSIM})
 
 #------------------------------------------------------------
 # Defer configuration of all Chrono libraries and programs
@@ -253,3 +253,11 @@ add_subdirectory(src)
 #------------------------------------------------------------
 
 include(CPack)
+
+#------------------------------------------------------------
+# Install data for colcon build
+#------------------------------------------------------------
+install(
+  DIRECTORY ${CMAKE_SOURCE_DIR}/data/
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/share/chrono/data
+)
